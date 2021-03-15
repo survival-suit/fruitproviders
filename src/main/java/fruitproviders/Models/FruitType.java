@@ -1,6 +1,5 @@
 package fruitproviders.Models;
 
-import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.util.*;
 
@@ -16,13 +15,25 @@ public class FruitType {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "fruit_id", nullable = false)
     private Fruit fruit;
+
+    @Transient
+    private UUID fruitId;
+
+    @OneToMany(mappedBy = "fruitType", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PricePeriod> pricePeriodList;
 
     public FruitType() {}
 
     public FruitType(String name) {
+        this.name = name;
+        this.pricePeriodList = new ArrayList<>();
+    }
+
+    public FruitType(UUID id, String name){
+        this.id = id;
         this.name = name;
     }
 
@@ -48,6 +59,14 @@ public class FruitType {
 
     public void setFruit(Fruit fruit) {
         this.fruit = fruit;
+    }
+
+    public UUID getFruitId() {
+        return fruitId;
+    }
+
+    public void setFruitId(UUID fruitId) {
+        this.fruitId = fruitId;
     }
 
     public String toString() {

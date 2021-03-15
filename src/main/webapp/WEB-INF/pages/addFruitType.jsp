@@ -9,14 +9,14 @@
     <form action="${var}" method="POST">
         <label for="name">Name</label>
         <input type="text" name="name" id="name">
-        <select name="id">
+
+        <label for="fruitId">Вид фрукта</label>
+        <select name="fruitId" id="fruitId">
             <c:forEach var="fruitVar" items="${fruits}">
                 <option value="${fruitVar.id}">${fruitVar.name}</option>
             </c:forEach>
         </select>
         <input type="submit" value="Apply Add">
     </form>
-
-
 </body>
 </html>

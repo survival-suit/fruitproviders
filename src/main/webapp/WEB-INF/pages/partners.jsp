@@ -2,28 +2,27 @@
 <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Fruits</title>
+    <title>Partners</title>
 </head>
 <body>
-    <h2>Fruits</h2>
+    <h2>Partners</h2>
     <table>
         <tr>
             <th>id</th>
             <th>name</th>
         </tr>
-        <c:forEach var="fruit" items="${fruits}">
+        <c:forEach var="partner" items="${partnerList}">
             <tr>
-                <td>${fruit.id}</td>
-                <td>${fruit.name}</td>
+                <td>${partner.id}</td>
+                <td>${partner.name}</td>
                 <td>
-                    <a href="/editFruit/${fruit.id}">edit</a>
-                    <a href="/deleteFruit/${fruit.id}">delete</a>
+                    <a href="/deletePartner/${partner.id}">delete</a>
                 </td>
             </tr>
         </c:forEach>
     </table>
-    <c:url value="/addFruit" var="addFruit"/>
-    <a href="${addFruit}">+ Add new fruit</a>
+    <c:url value="/addPartner" var="addPartner"/>
+    <a href="${addPartner}">+ Add new partner</a>
     <p><a href="/">Back to home page</a> </p>
 </body>
 </html>

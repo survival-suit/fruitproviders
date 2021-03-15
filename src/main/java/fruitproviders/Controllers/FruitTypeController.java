@@ -29,7 +29,7 @@ public class FruitTypeController {
         this.fruitService = fruitService;
     }
 
-    //Выводим все фрукты из справочкника
+    //Выводим все типы фруктов из справочкника
     @RequestMapping(value = "/fruitTypes", method = RequestMethod.GET)
     public ModelAndView allFruitTypes() {
         List<FruitType> fruitTypes = fruitTypeService.getAllFruitTypes();
@@ -39,7 +39,7 @@ public class FruitTypeController {
         return modelAndView;
     }
 
-    //для получения страницы добавления фрукта
+    //для получения страницы добавления типа фрукта
     @RequestMapping(value = "/addFruitType", method = RequestMethod.GET)
     public ModelAndView addFruitTypePage() {
         List<Fruit> fruits = fruitService.getAllFruits();
@@ -50,11 +50,11 @@ public class FruitTypeController {
     }
 
     //для добавления
-    @RequestMapping(value = "/addFruitType/{id}", method = RequestMethod.POST)
-    public ModelAndView addFruitType(@PathVariable("id") UUID id, @ModelAttribute("fruitType") FruitType fruitType) {
+    @RequestMapping(value = "/addFruitType", method = RequestMethod.POST)
+    public ModelAndView addFruitType(@ModelAttribute("fruitType") FruitType fruitType) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/fruitTypes");
-        fruitType.setFruit(fruitService.getById(id));
+        fruitType.setFruit(fruitService.getById(fruitType.getFruitId()));
         fruitTypeService.add(fruitType);
         return modelAndView;
     }

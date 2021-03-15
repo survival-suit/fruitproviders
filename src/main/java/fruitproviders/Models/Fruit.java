@@ -1,6 +1,5 @@
 package fruitproviders.Models;
 
-import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.util.*;
 
@@ -36,7 +35,7 @@ public class Fruit {
         fruitTypeList.add(fruitType);
     }
 
-    public void removeAuto(FruitType fruitType) {
+    public void removeFruitType(FruitType fruitType) {
         fruitTypeList.remove(fruitType);
     }
 
@@ -56,11 +55,11 @@ public class Fruit {
         this.name = name;
     }
 
-    public List<FruitType> getAutos() {
+    public List<FruitType> getFruitTypeList() {
         return fruitTypeList;
     }
 
-    public void setAutos(List<FruitType> fruitTypeList) {
+    public void setFruitTypeList(List<FruitType> fruitTypeList) {
         this.fruitTypeList = fruitTypeList;
     }
 
